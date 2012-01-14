@@ -1,0 +1,8 @@
+{
+    "success": true,
+    "data": [
+        {"id": 1, "company": "Sencha Inc", "desc": "Sencha equips developers with frameworks, tools and services to help them build amazing web application experiences using HTML5 and JavaScript."},
+        {"id": 2, "company": "Apple Inc", "desc": "Apple is an American multinational corporation that designs and sells consumer electronics, computer software, and personal computers. The company's best-known hardware products are the Macintosh line of computers, the iPod, the iPhone and the iPad. Its software includes the Mac OS X operating system; the iTunes media browser; the iLife suite of multimedia and creativity software; the iWork suite of productivity software; Aperture, a professional photography package; Final Cut Studio, a suite of professional audio and film-industry software products; Logic Studio, a suite of music production tools; the Safari web browser; and iOS, a mobile operating system."},
+        {"id": 3, "company": "Another Company", "desc": "This is just an example with fake information"}
+    ]
+}

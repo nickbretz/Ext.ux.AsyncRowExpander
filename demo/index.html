@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ext.ux.AsyncRowExpander Demo</title>
+    <link rel="stylesheet" type="text/css" href="extjs-4.0.7/resources/css/ext-all.css">
+    <script type="text/javascript" src="extjs-4.0.7/ext-all-debug.js"></script>
+    <script type="text/javascript" src="extjs-4.0.7/examples/ux/RowExpander.js"></script>
+    <script type="text/javascript" src="../AsyncRowExpander.js"></script>
+    <script type="text/javascript">
+
+        Ext.define('Company', {
+            extend: 'Ext.data.Model',
+            fields: [
+                {name: 'company'},
+                {name: 'desc'}
+             ],
+            proxy: {
+                type: 'ajax',
+                url: "companies.json",
+                reader: {
+                    type: "json",
+                    root: "data"
+                }
+            }
+        });
+
+        Ext.onReady(function() {
+
+            var asyncRowExpanderGrid = Ext.create('Ext.grid.Panel', {
+                title       : 'Async Row Expander',
+                width       : 600,
+                height      : 300,
+                store       : Ext.create('Ext.data.Store', {
+                    model: 'Company',
+                    autoLoad: true
+                }),
+                columns     : [
+                    {text: "Company", flex: 1, dataIndex: 'company'}
+                ],
+                plugins     : [{
+                    ptype: 'asyncrowexpander',
+                    params: {
+                        info: "this data is merged with the row record and passed to the server"
+                    },
+                    // this can be a server script that outputs a new template
+                    // or a static file
+                    url: "templateServer.php",
+                    cacheAjaxTpls: true
+                }],
+                renderTo    : Ext.getBody()
+            });
+
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

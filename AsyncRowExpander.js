@@ -110,7 +110,8 @@ Ext.define('Ext.ux.AsyncRowExpander', {
             rowNode = me.view.getNode(rowIdx),
             row     = Ext.get(rowNode),
             nextBd  = Ext.get(row).down(this.rowBodyTrSelector),
-            record  = me.view.getRecord(rowNode);
+            record  = me.view.getRecord(rowNode),
+            mask    = null;
 
         if (row.hasCls(me.rowCollapsedCls)) {
 
@@ -118,14 +119,23 @@ Ext.define('Ext.ux.AsyncRowExpander', {
                 me.expandRow(row, nextBd, record, rowNode);
                 me.updateLayout();
             } else {
+
+                // mask the row while loading
+                mask = new Ext.LoadMask(row, {msg: "Loading..."});
+                mask.show();
+
                 Ext.Ajax.request({
                     url: me.url,
                     params: Ext.apply(me.params, record.raw),
                     success: function(response) {
+                        mask.hide();
                         me.rowBodyCache[record.internalId] = Ext.create('Ext.XTemplate', response.responseText);
                         me.expandRow(row, nextBd, record, rowNode);
                         me.view.refreshNode(me.view.getStore().indexOf(record));
                         me.updateLayout();
+                    },
+                    failure: function(response) {
+                        mask.hide();
                     }
                 });
             }

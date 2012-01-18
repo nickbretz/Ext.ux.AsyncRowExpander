@@ -1,4 +1,6 @@
-This extends the ExtJs4 RowExpander to use ajax requests to retrieve the body template for each row.  
+Note: 4.0.x Only.  This has not been fully tested with 4.1.  I will update it soon.
+
+This extends the ExtJs4 RowExpander to use ajax requests to retrieve the body template for each row.
 Row body templates can be cached so that only the first "expand" for any given row will make a request. 
 
 The expander can take url that will serve the templates.  The record data is parameterized with the request so that

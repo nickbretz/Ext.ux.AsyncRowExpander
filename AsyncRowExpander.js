@@ -105,6 +105,14 @@ Ext.define('Ext.ux.AsyncRowExpander', {
         return o;
     },
 
+    /**
+     * Expands or collapses the row. Executes an ajax request to retrieve
+     * the template from the configured url, caching the result.
+     *
+     * @todo this should be refactored, along with the collapseRow and expandRow methods.
+     *
+     * @param rowIdx
+     */
     toggleRow: function(rowIdx) {
         var me      = this,
             rowNode = me.view.getNode(rowIdx),
@@ -120,7 +128,6 @@ Ext.define('Ext.ux.AsyncRowExpander', {
                 me.updateLayout();
             } else {
 
-                // mask the row while loading
                 mask = new Ext.LoadMask(row, {msg: "Loading..."});
                 mask.show();
 
